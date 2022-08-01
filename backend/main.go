@@ -10,6 +10,12 @@ import (
 )
 
 func setupRoutes(app *fiber.App) {
+	// Auth
+	app.Post("/register", handlers.Register)
+	app.Post("/login", handlers.Login)
+	app.Get("/user", handlers.User)
+	app.Post("/logout", handlers.Logout)
+	// Blogs
 	app.Get("/blogs", handlers.GetBlogs)
 	app.Get("/blogs/:id", handlers.GetBlog)
 	app.Post("/blogs", handlers.CreateBlog)

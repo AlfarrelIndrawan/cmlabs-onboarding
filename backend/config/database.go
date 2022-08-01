@@ -21,7 +21,7 @@ func Connect() error {
 		panic(err)
 	}
 
-	Database.AutoMigrate(&entities.Blog{})
+	Database.AutoMigrate(&entities.Blog{}, &entities.User{})
 
 	return nil
 }
