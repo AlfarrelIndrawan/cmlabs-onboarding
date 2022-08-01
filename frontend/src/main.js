@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-//import Bootstrap, Popper, jQuery, Axios
+//import Bootstrap, Popper, jQuery, Axios, vue cookies
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 import 'jquery/dist/jquery.min'

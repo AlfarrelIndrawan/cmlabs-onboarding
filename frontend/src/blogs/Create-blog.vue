@@ -64,13 +64,13 @@ export default {
             axios.post('http://localhost:3000/blogs', {
                 title: title,
                 content: content
+            }).then(response => {
+                console.log(response)
             }).then(() => {
-
                 //redirect ke blog index
                 router.push({
                     name: 'blog.index'
                 })
-
             }).catch(error => {
                 //assign state validation with error 
                 validation.value = error.response.data

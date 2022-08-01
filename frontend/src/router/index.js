@@ -4,6 +4,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 //define a routes
 const routes = [
     {
+        path: '/login',
+        name: 'auth.login',
+        component: () => import('@/auth/Login-auth.vue')
+    },
+    {
         path: '/',
         name: 'blog.index',
         component: () => import('@/blogs/Index-blog.vue')
