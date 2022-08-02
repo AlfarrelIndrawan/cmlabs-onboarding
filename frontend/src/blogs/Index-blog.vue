@@ -9,7 +9,7 @@
                             <button @click.prevent="logout" class="btn btn-sm btn-danger ml-1 hide-guest">Logout</button>
                         </div>
                         <hr>
-                        <router-link :to="{name: 'blog.create'}" class="btn btn-md btn-success hide-guest">Buat Blog Baru</router-link>
+                        <router-link :to="{name: 'blog.create'}" class="btn btn-sm btn-success hide-guest">Buat Blog Baru</router-link>
                         <br>
                         <div v-for="(blog, index) in blogs" :key="index" class="mt-4">
                             <router-link :to="{name: 'blog.detail', params:{id: blog.ID}}" class="text-reset text-decoration-none">
@@ -63,11 +63,6 @@ export default {
                 for(let element of elements) {
                     element.style.display = "none";
                 }
-            } else {
-                let elements = document.getElementsByClassName("hide-guest");
-                for(let element of elements) {
-                    element.style.display = "block";
-                }
             }
 
         })
@@ -102,6 +97,11 @@ export default {
             }).catch(error => {
                 console.log(error.response.data)
             })
+            let elements = document.getElementsByClassName("hide-guest");
+            for(let element of elements) {
+                element.style.display = "none";
+            }
+            location.reload();
         }
 
         //return
