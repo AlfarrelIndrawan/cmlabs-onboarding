@@ -28,6 +28,15 @@ func GetBlog(c *fiber.Ctx) error {
 }
 
 func CreateBlog(c *fiber.Ctx) error {
+	cookie := c.Cookies("jwt")
+
+	if cookie == "" {
+		c.Status(fiber.StatusUnauthorized)
+		return c.JSON(fiber.Map{
+			"message": "Unauthenticated",
+		})
+	}
+
 	blog := new(entities.Blog)
 
 	if err := c.BodyParser(blog); err != nil {
@@ -39,6 +48,15 @@ func CreateBlog(c *fiber.Ctx) error {
 }
 
 func UpdateBlog(c *fiber.Ctx) error {
+	cookie := c.Cookies("jwt")
+
+	if cookie == "" {
+		c.Status(fiber.StatusUnauthorized)
+		return c.JSON(fiber.Map{
+			"message": "Unauthenticated",
+		})
+	}
+
 	blog := new(entities.Blog)
 	id := c.Params("id")
 
@@ -51,6 +69,15 @@ func UpdateBlog(c *fiber.Ctx) error {
 }
 
 func RemoveBlog(c *fiber.Ctx) error {
+	cookie := c.Cookies("jwt")
+
+	if cookie == "" {
+		c.Status(fiber.StatusUnauthorized)
+		return c.JSON(fiber.Map{
+			"message": "Unauthenticated",
+		})
+	}
+
 	id := c.Params("id")
 	var blog entities.Blog
 

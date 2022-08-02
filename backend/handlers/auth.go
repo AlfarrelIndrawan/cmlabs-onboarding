@@ -13,26 +13,6 @@ import (
 
 const SecretKey = "secret"
 
-func Register(c *fiber.Ctx) error {
-	var data map[string]string
-
-	if err := c.BodyParser(&data); err != nil {
-		return err
-	}
-
-	password, _ := bcrypt.GenerateFromPassword([]byte(data["password"]), 14)
-
-	user := entities.User{
-		Name:     data["name"],
-		Email:    data["email"],
-		Password: password,
-	}
-
-	config.Database.Create(&user)
-
-	return c.JSON(user)
-}
-
 func Login(c *fiber.Ctx) error {
 	var data map[string]string
 
@@ -89,29 +69,6 @@ func Login(c *fiber.Ctx) error {
 		"success": "success message",
 		"jwt":     token,
 	})
-}
-
-func User(c *fiber.Ctx) error {
-	cookie := c.Cookies("jwt")
-
-	token, err := jwt.ParseWithClaims(cookie, &jwt.RegisteredClaims{}, func(t *jwt.Token) (interface{}, error) {
-		return []byte(SecretKey), nil
-	})
-
-	if err != nil {
-		c.Status(fiber.StatusUnauthorized)
-		return c.JSON(fiber.Map{
-			"message": "Unauthenticated",
-		})
-	}
-
-	claims := token.Claims.(*jwt.RegisteredClaims)
-
-	var user entities.User
-
-	config.Database.Where("id = ?", claims.Issuer).First(&user)
-
-	return c.JSON(user)
 }
 
 func Logout(c *fiber.Ctx) error {
