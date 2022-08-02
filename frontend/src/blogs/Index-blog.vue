@@ -64,7 +64,6 @@ export default {
                     element.style.display = "none";
                 }
             }
-
         })
 
         //method delete
@@ -107,7 +106,6 @@ export default {
             }
             location.reload();
         }
-
         //return
         return {
             blogs,
@@ -115,10 +113,9 @@ export default {
             logout,
             router
         }
-
     }
-
 }
+
 </script>
 
 <style>
