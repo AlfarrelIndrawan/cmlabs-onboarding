@@ -82,6 +82,10 @@ export default {
             axios.put(`http://localhost:3000/blogs/${route.params.id}`, {
                 title: title,
                 content: content
+            }, {
+                headers: {
+                    'jwt': sessionStorage.getItem("jwt")
+                }
             }).then(() => {
 
                 //redirect ke blog index

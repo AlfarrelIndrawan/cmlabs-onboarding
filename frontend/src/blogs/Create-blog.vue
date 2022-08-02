@@ -64,6 +64,10 @@ export default {
             axios.post('http://localhost:3000/blogs', {
                 title: title,
                 content: content
+            }, {
+                headers: {
+                    'jwt': sessionStorage.getItem("jwt")
+                }
             }).then(response => {
                 console.log(response)
             }).then(() => {

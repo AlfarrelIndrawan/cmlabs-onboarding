@@ -71,7 +71,11 @@ export default {
         function blogDelete(id) {
             
             //delete data blog by ID
-            axios.delete(`http://localhost:3000/blogs/${id}`)
+            axios.delete(`http://localhost:3000/blogs/${id}`, {
+                headers: {
+                    'jwt': sessionStorage.getItem("jwt")
+                }
+            })
             .then(() => {
               
               //splice blogs 
