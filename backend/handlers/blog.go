@@ -29,8 +29,9 @@ func GetBlog(c *fiber.Ctx) error {
 
 func CreateBlog(c *fiber.Ctx) error {
 	cookie := c.Cookies("jwt")
+	jwt_header := c.Get("jwt")
 
-	if cookie == "" {
+	if cookie == "" && jwt_header == "" {
 		c.Status(fiber.StatusUnauthorized)
 		return c.JSON(fiber.Map{
 			"message": "Unauthenticated",
@@ -49,8 +50,9 @@ func CreateBlog(c *fiber.Ctx) error {
 
 func UpdateBlog(c *fiber.Ctx) error {
 	cookie := c.Cookies("jwt")
+	jwt_header := c.Get("jwt")
 
-	if cookie == "" {
+	if cookie == "" && jwt_header == "" {
 		c.Status(fiber.StatusUnauthorized)
 		return c.JSON(fiber.Map{
 			"message": "Unauthenticated",
@@ -70,8 +72,9 @@ func UpdateBlog(c *fiber.Ctx) error {
 
 func RemoveBlog(c *fiber.Ctx) error {
 	cookie := c.Cookies("jwt")
+	jwt_header := c.Get("jwt")
 
-	if cookie == "" {
+	if cookie == "" && jwt_header == "" {
 		c.Status(fiber.StatusUnauthorized)
 		return c.JSON(fiber.Map{
 			"message": "Unauthenticated",
