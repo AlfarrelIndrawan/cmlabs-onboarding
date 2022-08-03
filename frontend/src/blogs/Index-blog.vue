@@ -19,7 +19,7 @@
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">{{blog.title}}</h5>
-                                        <p class="card-text">{{blog.content.substring(0,500)}}...</p>
+                                        <p class="card-text">{{((blog.content.length > 500) ? (blog.content.substring(0,500) + "...") : blog.content)}}</p>
                                         <router-link :to="{name: 'blog.edit', params:{id: blog.ID }}" class="btn btn-sm btn-primary mx-3 hide-guest">Edit Blog</router-link>
                                         <button @click.prevent="blogDelete(blog.ID)" class="btn btn-sm btn-danger ml-1 hide-guest">Delete Blog</button>
                                     </div>
